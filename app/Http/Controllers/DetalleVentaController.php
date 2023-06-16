@@ -207,8 +207,8 @@ class DetalleVentaController extends Controller
             if ($validator->fails()) {
                 return response()->json([
                     'respuesta' => false,
-                    'mensaje' => $validator->errors()->all(),
-                ], 400);
+                    'mensaje' => $validator->errors()->all()
+                ], 400);;
             }
             //Validamos si existe la venta
             $venta = Venta::find($id_venta);

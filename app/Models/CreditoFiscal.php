@@ -21,9 +21,7 @@ class CreditoFiscal extends Model
 
     protected $fillable = [
         'id_cliente',
-        'fecha_credito',
-        'total_credito',
-        'total_iva_credito',
+        'id_venta',
     ];
 
     public function cliente()
@@ -31,9 +29,9 @@ class CreditoFiscal extends Model
         return $this->belongsTo(Cliente::class, 'id_cliente', 'id_cliente');
     }
 
-    public function detalleCredito()
+    public function venta()
     {
-        return $this->hasMany(DetalleCredito::class, 'id_creditofiscal', 'id_creditofiscal');
+        return $this->belongsTo(Venta::class, 'id_venta', 'id_venta');
     }
 
     

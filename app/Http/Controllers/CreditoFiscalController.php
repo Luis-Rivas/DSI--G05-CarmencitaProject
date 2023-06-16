@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\DetalleCreditoController;
 use App\Models\Cliente;
+use App\Models\Venta;
 
 class CreditoFiscalController extends Controller
 {
@@ -19,7 +20,7 @@ class CreditoFiscalController extends Controller
         return response()->json([
             'respuesta' => true,
             'mensaje' => 'Lista de creditos fiscales',
-            'datos' => CreditoFiscal::with('cliente')->get()
+            'datos' => CreditoFiscal::with('cliente', 'venta')->get()
         ], 200);
     }
 
@@ -31,9 +32,7 @@ class CreditoFiscalController extends Controller
         //
         $rules = [
             'id_cliente' => 'required|integer',
-            'fecha_credito' => 'required|date',
-            'total_credito' => 'required|decimal:0,2',
-            'total_iva_credito' => 'required|decimal:0,2',
+            'id_venta' => 'required|integer',
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -89,10 +88,8 @@ class CreditoFiscalController extends Controller
     {
         //
         $rules = [
-            'id_cliente' => 'integer',
-            'fecha_credito' => 'date',
-            'total_credito' => 'decimal:0,2',
-            'total_iva_credito' => 'decimal:0,2',
+            'id_cliente' => 'required|integer',
+            'id_venta' => 'required|integer',
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -142,13 +139,11 @@ class CreditoFiscalController extends Controller
 
 
 
-    public function register_credito_detalle(Request $request)
+    public function register_credito_detalle(Request $request, int $id_venta)
     {
         $rules = [
             'id_cliente' => 'required|integer',
-            'fecha_credito' => 'required|date',
-            'total_credito' => 'required|decimal:0,2',
-            'total_iva_credito' => 'required|decimal:0,2',
+            'id_venta' => 'required|integer',
         ];
 
         $validator = Validator::make($request->credito, $rules);
@@ -168,11 +163,24 @@ class CreditoFiscalController extends Controller
             ], 400);
         }
 
+        // Validar que la venta exista
+        $venta = Venta::find($id_venta);
+        if (!isset($venta)) {
+            return response()->json([
+                'respuesta' => false,
+                'mensaje' => 'La venta no existe'
+            ], 400);
+        }
+
         $credito = CreditoFiscal::create($request->credito);
         if (isset($credito)) {
-            $detalle_credito = new DetalleCreditoController();
-            return $detalle_credito->register_detalle_credito($request, $credito->id_creditofiscal);
+            return response()->json([
+                'respuesta' => true,
+                'mensaje' => 'Credito creado correctamente',
+            ], 400);
         } else {
+            // Eliminar la venta
+            $venta->delete();
             return response()->json([
                 'respuesta' => false,
                 'mensaje' => 'Error al crear el credito',

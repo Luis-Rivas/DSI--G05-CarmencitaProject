@@ -24,11 +24,19 @@ class Venta extends Model
         'total_venta',
         'total_iva',
         'nombre_cliente_venta',
+        'is_credito',
+        'is_active'
     ];
 
     public function detalleVenta()
     {
         return $this->hasMany(DetalleVenta::class, 'id_venta', 'id_venta');
+    }
+
+    // Relación uno a uno con CreditoFiscal
+    public function creditoFiscal()
+    {
+        return $this->hasOne(CreditoFiscal::class, 'id_venta', 'id_venta');
     }
 
     

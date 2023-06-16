@@ -13,14 +13,18 @@ return new class extends Migration
     {
         Schema::create('CreditoFiscal', function (Blueprint $table) {
             $table->id('id_creditofiscal');
+            $table->bigInteger('id_venta')->unsigned();
             $table->bigInteger('id_cliente')->unsigned();
-            $table->date('fecha_credito');
-            $table->decimal('total_credito', 8, 2);
-            $table->decimal('total_iva_credito', 8, 2);
 
             $table->foreign('id_cliente')
                 ->references('id_cliente')
                 ->on('Cliente')
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
+
+            $table->foreign('id_venta')
+                ->references('id_venta')
+                ->on('Venta')
                 ->onDelete('restrict')
                 ->onUpdate('cascade');
         });

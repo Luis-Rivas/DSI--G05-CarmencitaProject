@@ -6,6 +6,7 @@ use App\Models\Venta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\DetalleVentaController;
+use App\Http\Controllers\CreditoFiscalController;
 
 class VentaController extends Controller
 {
@@ -34,6 +35,8 @@ class VentaController extends Controller
             'total_venta' => 'required|decimal:0,2',
             'total_iva' => 'required|decimal:0,2',
             'nombre_cliente_venta' => 'nullable|string|max:30',
+            'is_credito' => 'required|boolean',
+            'is_active' => 'required|boolean'
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
@@ -90,6 +93,8 @@ class VentaController extends Controller
             'total_venta' => 'required|decimal:2,2',
             'total_iva' => 'required|decimal:2,2',
             'nombre_cliente_venta' => 'required|string|max:30',
+            'is_credito' => 'required|boolean',
+            'is_active' => 'required|boolean'
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -147,6 +152,8 @@ class VentaController extends Controller
             'total_venta' => 'required|decimal:0,2',
             'total_iva' => 'required|decimal:0,2',
             'nombre_cliente_venta' => 'nullable|string|max:30',
+            'is_credito' => 'required|boolean',
+            'is_active' => 'required|boolean'
         ];
         $validator = Validator::make($request->venta, $rules);
         if ($validator->fails()) {
@@ -159,7 +166,41 @@ class VentaController extends Controller
         $venta = Venta::create($request->venta);
         if (isset($venta)) {
             $detalle_venta = new DetalleVentaController();
-            return $detalle_venta->register_detalle_venta($request, $venta->id_venta);
+
+            $resp_detalle_venta = $detalle_venta->register_detalle_venta($request, $venta->id_venta);
+            $status_detalle_venta = $resp_detalle_venta->getStatusCode();
+
+            if($status_detalle_venta === 201){
+
+                if($request->venta['is_credito'] === true){
+                    $credito_fiscal = new CreditoFiscalController();
+
+                    $resp_credito = $credito_fiscal->register_credito_detalle($request, $venta->id_venta);
+                    $status_credito = $resp_credito->getStatusCode();
+    
+                    if($status_credito === 201){
+                        return response()->json([
+                            'respuesta' => true,
+                            'mensaje' => 'Credito creado correctamente',
+                            'datos' => $venta,
+                        ], 201);
+                    } else {
+                        return response()->json([
+                            'respuesta' => false,
+                            'mensaje' => 'Error al crear el credito',
+                        ], 400);
+                    }
+                } else {
+                    return response()->json([
+                        'respuesta' => true,
+                        'mensaje' => 'Venta creada correctamente',
+                        'datos' => $venta->id_venta,
+                    ], 201);
+                }
+
+            } else {
+                return $resp_detalle_venta;
+            }
         } else {
             return response()->json([
                 'respuesta' => false,

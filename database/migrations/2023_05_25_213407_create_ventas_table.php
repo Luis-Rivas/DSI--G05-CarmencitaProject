@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('Venta', function (Blueprint $table) {
             $table->id('id_venta');
             $table->date('fecha_venta');
+            $table->boolean('is_credito');
+            $table->boolean('is_active');
             $table->decimal('total_venta', 8, 2);
             $table->decimal('total_iva', 8, 2);
             $table->string('nombre_cliente_venta', 30)->nullable();
