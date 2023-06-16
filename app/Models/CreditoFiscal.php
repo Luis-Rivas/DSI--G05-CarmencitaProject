@@ -34,5 +34,13 @@ class CreditoFiscal extends Model
         return $this->belongsTo(Venta::class, 'id_venta', 'id_venta');
     }
 
+    public function municipio()
+    {
+        return $this->belongsTo(Municipio::class);
+    }
     
+    public function departamento()
+    {
+        return $this->belongsTo(Departamento::class);
+    }
 }
