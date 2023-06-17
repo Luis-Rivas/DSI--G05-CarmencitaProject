@@ -122,13 +122,13 @@ class EmpleadoController extends Controller
         //]);
         
         //$usuario = new User();
-        $miEmpleado = Empleado::where('dui_empleado',$empleado->dui_empleado)->first();
+        /*$miEmpleado = Empleado::where('dui_empleado',$empleado->dui_empleado)->first();
         $user = User::create([
             'id_empleado' => $miEmpleado->id_empleado,
             'name' => $request->primer_nombre,
             'email' => $request->email,
             'password' => Hash::make($request->password)
-        ]);
+        ]);*/
 
         //$token = $user->createToken('auth_token')->plainTextToken;
 
@@ -137,7 +137,7 @@ class EmpleadoController extends Controller
             'status'=>true,
             'message'=>$validator->errors()->all(),
             'empleado'=>$empleado,
-            'user'=>$user->email
+            //'user'=>$user->email
         ]);
     }
 
