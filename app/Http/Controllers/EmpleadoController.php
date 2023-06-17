@@ -71,7 +71,7 @@ class EmpleadoController extends Controller
             'id_nacionalidad' => 'required',
             'id_sexo' => 'required',
             'id_cargo' => 'required',
-            'dui_empleado' => 'required|unique:empleado,dui_empleado',
+            'dui_empleado' => 'required|unique:Empleado,dui_empleado',
             'id_estado_familiar' => 'required',
             'fecha_nacimiento' => 'required',
             'domicilio' => 'required',
