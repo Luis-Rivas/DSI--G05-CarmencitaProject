@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
-use PhpParser\Node\Expr\Empty_;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\Empleado as EmpleadoResource;
 
 class EmpleadoController extends Controller
@@ -62,7 +62,7 @@ class EmpleadoController extends Controller
         ];*/       
         
         //$validator = \Validator::make($request->input(),$rules);
-        $validator = \Validator::make($request->all(),[
+        $validator = Validator::make($request->all(),[
             //'name' => 'required|string|max:255',
             'email' => 'required|string|max:255|unique:users',
             'password' => 'required|string|min:8',
