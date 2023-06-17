@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['https://daiv05.github.io', 'https://main--spectacular-granita-d61b49.netlify.app/'],
+    'allowed_origins' => ['https://daiv05.github.io', 'https://main--spectacular-granita-d61b49.netlify.app'],
 
     'allowed_origins_patterns' => [],
 
