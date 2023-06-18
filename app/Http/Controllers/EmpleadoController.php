@@ -172,7 +172,7 @@ class EmpleadoController extends Controller
                 'id_cargo' => 'required',
                 'dui_empleado' => [
                     'required',
-                    Rule::unique('empleado')->ignore($empleado, 'id_empleado')
+                    Rule::unique('App\Models\Empleado')->ignore($empleado, 'id_empleado')
                 ],
                 'id_estado_familiar' => 'required',
                 'fecha_nacimiento' => 'required',
