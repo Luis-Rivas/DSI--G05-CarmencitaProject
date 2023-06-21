@@ -36,5 +36,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('CreditoFiscal');
+
+        Schema::table('CreditoFiscal', function (Blueprint $table) {
+            $table->dropColum(['estado_credito']);
+        });
     }
+    
 };

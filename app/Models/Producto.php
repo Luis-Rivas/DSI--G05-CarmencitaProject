@@ -24,7 +24,9 @@ class Producto extends Model
         'cantidad_producto_disponible',
         'precio_unitario',
         'esta_disponible',
+        'foto'
     ];
+
 
     public function detalleCredito()
     {

@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Nette\Schema\Schema as SchemaSchema;
 
 return new class extends Migration
 {
@@ -12,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('JornadaLaboralDiaria', function (Blueprint $table){
-            $table->id('id_jornada_laboral_diaria');
-            $table->time('hora_inicio');
-            $table->time('hora_fin');
+        Schema::create('Sexo', function (Blueprint $table) {
+            $table->id('id_sexo');
+            $table->string('nombre_sexo');
+            $table->timestamps();
         });
     }
 
@@ -24,7 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
-        Schema::dropIfExists('JornadaLaboralDiaria');
+        Schema::dropIfExists('Sexo');
     }
 };
