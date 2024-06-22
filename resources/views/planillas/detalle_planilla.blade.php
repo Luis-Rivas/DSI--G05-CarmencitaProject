@@ -78,25 +78,25 @@
             <tr>
                 <td class="td">{{ $detallePlanilla->empleado->primer_nombre }}</td>
                 <td class="td">{{ $detallePlanilla->dias_laborados }}</td>
-                <td class="td">{{ number_format($detallePlanilla->base, 2) }}</td>
-                <td class="td">{{ number_format($detallePlanilla->monto_vacaciones, 2) }}</td>
-                <td class="td">{{ number_format($detallePlanilla->monto_aguinaldo, 2) }}</td>
-                <td class="td">{{ number_format($detallePlanilla->monto_bonos, 2) }}</td>
-                <td class="td">{{ number_format($detallePlanilla->monto_gravable_cotizable, 2) }}</td>
-                <td class="td">{{ number_format($detallePlanilla->monto_isss, 2) }}</td>
-                <td class="td">{{ number_format($detallePlanilla->monto_afp, 2) }}</td>
-                <td class="td">{{ number_format($detallePlanilla->monto_isss_patronal, 2) }}</td>
-                <td class="td">{{ number_format($detallePlanilla->monto_afp_patronal, 2) }}</td>
-                <td class="td">{{ number_format($detallePlanilla->monto_pago_empleado, 2) }}</td>
-                <td class="td">{{ number_format($detallePlanilla->monto_planilla_unica, 2) }}</td>
+                <td class="td">${{ number_format($detallePlanilla->base, 2) }}</td>
+                <td class="td">${{ number_format($detallePlanilla->monto_vacaciones, 2) }}</td>
+                <td class="td">${{ number_format($detallePlanilla->monto_aguinaldo, 2) }}</td>
+                <td class="td">${{ number_format($detallePlanilla->monto_bonos, 2) }}</td>
+                <td class="td">${{ number_format($detallePlanilla->monto_gravable_cotizable, 2) }}</td>
+                <td class="td">${{ number_format($detallePlanilla->monto_isss, 2) }}</td>
+                <td class="td">${{ number_format($detallePlanilla->monto_afp, 2) }}</td>
+                <td class="td">${{ number_format($detallePlanilla->monto_isss_patronal, 2) }}</td>
+                <td class="td">${{ number_format($detallePlanilla->monto_afp_patronal, 2) }}</td>
+                <td class="td">${{ number_format($detallePlanilla->monto_pago_empleado, 2) }}</td>
+                <td class="td">${{ number_format($detallePlanilla->monto_planilla_unica, 2) }}</td>
             </tr>
             @endforeach
         </tbody>
     </table>
 
-    <div class="signature">
+    <!--<div class="signature">
         <div class="signature-line"></div>
         <div>Gerente</div>
-    </div>
+    </div>-->
 </body>
 </html>

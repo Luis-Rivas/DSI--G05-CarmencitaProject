@@ -103,12 +103,12 @@
                 <td></td>
             </tr>
             <tr>
-                <td><strong>Total ingresos:</strong> ${{ $detallePlanilla->monto_gravable_cotizable }}</td>
+                <td><strong>Total ingresos:</strong> ${{ round($detallePlanilla->monto_gravable_cotizable,2) }}</td>
                 <td></td>
             </tr>
             <tr>
                 <td colspan="3" align="center"><strong>Total Neto a recibir:</strong>
-                    ${{ $detallePlanilla->monto_pago_empleado }}</td>
+                    ${{ round($detallePlanilla->monto_pago_empleado,2) }}</td>
             </tr>
         </table>
         <div class="signature">
