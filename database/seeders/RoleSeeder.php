@@ -47,7 +47,7 @@ class RoleSeeder extends Seeder
 
         $user = User::create([
             "id_empleado"=>1,
-            "name"=>"Morgott",
+            "name"=>"Luis Rivas",
             "email"=>"luis@gmail.com",
             "password"=>bcrypt("password")
         ]);
@@ -55,7 +55,7 @@ class RoleSeeder extends Seeder
 
         $user = User::create([
             "id_empleado"=>2,
-            "name"=>"Margit",
+            "name"=>"Teobaldo Azahar",
             "email"=>"teobaldo@gmail.com",
             "password"=>bcrypt("password")
         ]);
@@ -63,7 +63,7 @@ class RoleSeeder extends Seeder
 
         $user = User::create([
             "id_empleado"=>3,
-            "name"=>"MaleniaBladeOfMiquella",
+            "name"=>"Leonardo Efigenio",
             "email"=>"leonardo@gmail.com",
             "password"=>bcrypt("password")
         ]);
@@ -72,7 +72,7 @@ class RoleSeeder extends Seeder
 
         $user = User::create([
             "id_empleado"=>4,
-            "name"=>"Miquella",
+            "name"=>"Gabriela Paredes",
             "email"=>"gabriela@gmail.com",
             "password"=>bcrypt("password")
         ]);
@@ -80,7 +80,7 @@ class RoleSeeder extends Seeder
 
         $user = User::create([
             "id_empleado"=>5,
-            "name"=>"Tarnished",
+            "name"=>"David Deras",
             "email"=>"david@gmail.com",
             "password"=>bcrypt("password")
         ]);
